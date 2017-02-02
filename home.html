@@ -1,0 +1,219 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!--<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />-->
+<meta name="viewport" content="initial-scale=1 maximum-scale=1 user-scalable=0 minimal-ui" />
+<meta name="description" content="">
+<meta name="author" content="">
+<title>QuickMed | Vademecum Farmac&eacute;utico</title>
+
+<!-- Bootstrap Core CSS -->
+<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom Fonts -->
+<link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<!-- Plugin CSS -->
+<link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+<!-- Theme CSS -->
+<link href="css/style.css" rel="stylesheet">
+    <link href="css/owl.carousel.css" rel="stylesheet">
+    <link href="css/owl.theme.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="loader"> <img src="img/logo_load.png" alt=""/>
+  <div class="spinner">
+    <div class="rect1"></div>
+    <div class="rect2"></div>
+    <div class="rect3"></div>
+    <div class="rect4"></div>
+    <div class="rect5"></div>
+  </div>
+</div>
+<div class="row">
+  <h1 class="titulo"><img src="img/logo_header.png" alt="" width="60"/> QuickMed<sup>&reg;</sup></h1>
+</div>
+<div class="clearfix">&nbsp;</div>
+<div class="row wrapper">
+  <div class="row headmenu">
+    <div class="col-xs-4 item" id="btnIngredientes" data-toggle="modal" data-target="#searchModal">
+      <h1><i class="fa fa-shield"></i></h1>
+      <small>Principio Activo</small></div>
+    <div class="col-xs-4 borde item" id="btnLaboratorios" data-toggle="modal" data-target="#searchModal">
+      <h1><i class="fa fa-industry"></i></h1>
+      <small>Laboratorio</small></div>
+    <div class="col-xs-4 item" id="btnProductos" data-toggle="modal" data-target="#searchModal">
+      <h1><i class="fa fa-tags"></i></h1>
+      <small>Productos</small></div>
+  </div>
+  <div class="clearfix">&nbsp;</div>
+  <div class="clearfix">&nbsp;</div>
+  <h4 class="titulo">QuickMed<sup>&reg;</sup></h4>
+  <p>¡La herramienta digital eficaz para su consulta!, encontrará más de 5000 productos farmacéuticos, con datos técnicos sobre indicaciones, contraindicaciones, dosificación, recomendaciones, precauciones, reacciones adversas, dosis pediátrica, categoría teratogénica y CIE. Cuenta además con precios referenciales de venta al público.</p>
+  <div class="clearfix">&nbsp;</div>
+  
+  <div class="clearfix">&nbsp;</div>
+  
+  
+  <div class="panel panel-primary" id="nuevos">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-bullhorn"></i> Productos Nuevos</h3>
+      </div>
+      <div class="panel-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Producto</th>
+              <th>Presentaci&oacute;n</th>
+            </tr>
+          </thead>
+          <tbody id="productos_nuevos">
+            <tr>
+              <td>&nbsp;</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+  
+
+<div id="owl-carousel">
+    <div class="item">&nbsp;</div>
+</div>
+  
+</div>
+<div class="row footermenu">
+  <div class="col-xs-3 item"><a href="home.html"><i class="fa fa-home"></i></a></div>
+  <div class="col-xs-3 borde item"><a href="terms.html"><i class="fa fa-university"></i></a></div>
+  <div class="col-xs-3 borde item"><a href="settings.html"><i class="fa fa-cog"></i></a></div>
+  <div class="col-xs-3 item"><a href="about.html"><i class="fa fa-question-circle"></i></a></div>
+</div>
+<div class="modal fade" tabindex="-1" role="dialog" id="searchModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form action="results.html" id="serchForm" method="get">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="modal-title">Buscar <span>Productos</span></h4>
+        </div>
+        <div class="modal-body">
+          <div class="input-group input-group-sm">
+            <input type="text" class="form-control" placeholder="Buscar..." name="producto" id="inputProducto">
+            <span class="input-group-btn">
+            <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
+            </span> </div>
+          <div class="clearfix">&nbsp;</div>
+        </div>
+        <input type="hidden" name="tabla" value="producto" id="tabla"/>
+      </form>
+    </div>
+    <!-- /.modal-content --> 
+  </div>
+  <!-- /.modal-dialog --> 
+</div>
+<!-- /.modal --> 
+
+<!-- jQuery --> 
+<script src="vendor/jquery/jquery.min.js"></script> 
+
+<!-- Bootstrap Core JavaScript --> 
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script> 
+
+<!-- Plugin JavaScript --> 
+<script src="js/jquery.easing.min.js"></script> 
+<script src="vendor/scrollreveal/scrollreveal.min.js"></script> 
+<script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script> 
+<script src="cordova.js"></script> 
+<script src="js/main.js"></script> 
+<script src="js/searchControll.js"></script> 
+	<script src="js/owl.carousel.js"></script>
+	
+<script type="text/javascript"> 
+		$(document).ready(function(e) {
+            
+			
+			
+			
+			
+			//*
+			
+            var doc='nuevos';
+			
+			var id='';
+			var pres='';
+			var pres='';
+			var jqxhr = $.getJSON( "https://quickmed.edifarm.com.ec/ws/mobile/buscar.php",
+			{
+				producto:doc,
+				tabla:doc,
+				deviceuuid: device.uuid,
+				devicename: device.manufacturer,
+				version: device.version,
+				platform: device.platform,
+				model: device.model,
+				
+				
+			}, function(response) {
+			  //console.log( "success" );
+			  
+			})
+			  .done(function(data) {
+				//console.log( "second success" );
+				
+				
+				
+			  	var nuevos='';
+			  
+				$.each(data,function(i,v){
+					id=v.idproducto;
+					prod=v.producto;
+				pres=v.presentacion;	
+					nuevos=nuevos+'<tr><td> <a href="info.html?producto='+id+'"> '+prod+'</a></td><td>'+pres+'</td></tr>';
+				});
+				
+				
+				$('#productos_nuevos').html(nuevos);
+				
+				
+			  
+			  })
+			  .fail(function() {
+				//console.log( "error" );
+			  })
+			  .always(function() {
+				//console.log( "complete" );
+				$('.loader').hide('slow');
+			  });
+			
+			//*/
+			
+			
+			
+			
+			$('.loader').hide('slow');
+			
+		    
+			$("#owl-carousel").owlCarousel({
+ 
+			  autoPlay: 3000, //Set AutoPlay to 3 seconds
+		 
+			  items : 1,
+			  itemsDesktop : [1170,3],
+			  itemsDesktopSmall : [768,2]
+		 
+			});
+			
+			
+		
+        });
+	
+	/*Analytics*/
+	window.ga.trackView('Home');
+</script>
+</body>
+</html>

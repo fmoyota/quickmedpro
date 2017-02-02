@@ -1,0 +1,257 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />-->
+    <meta name="viewport" content="initial-scale=1 maximum-scale=1 user-scalable=0 minimal-ui" />
+    <meta name="description" content="">
+    <meta name="author" content="">
+<title>QuickMed | Vademecum Farmac&eacute;utico</title>
+
+<!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
+    
+
+    <!-- Plugin CSS -->
+    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+    <!-- Theme CSS -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/owl.carousel.css" rel="stylesheet">
+    <link href="css/owl.theme.css" rel="stylesheet">
+
+<style>
+
+</style>
+
+</head>
+
+<body>
+
+<div class="loader">
+<img src="img/logo_load.png" alt=""/>
+<div class="spinner">
+  <div class="rect1"></div>
+  <div class="rect2"></div>
+  <div class="rect3"></div>
+  <div class="rect4"></div>
+  <div class="rect5"></div>
+</div>
+</div>
+
+<div class="row">
+<h1 class="titulo"><img src="img/logo_header.png" alt="" width="60"/> QuickMed<sup>&reg;</sup></h1>
+</div>
+
+<div class="clearfix">&nbsp;</div>
+<div class="wrapper"> 
+
+	
+    <div class="login_init"> 
+    
+    <form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email</label>
+    <input type="email" class="form-control" id="email" placeholder="Email">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Contrase&ntilde;a</label>
+    <input type="password" class="form-control" id="clave" placeholder="Password">
+  </div>
+  
+  
+  <button type="button" class="btn btn-primary" id="entrar">Entrar</button>
+</form>
+<div class="clearfix" id="internet" style="color: red">&nbsp;</div>
+        <hr>
+<div class="clearfix">&nbsp;</div>
+
+No tienes cuenta? <a href="newuser.html">Reg&iacute;strate <i class="fa fa-user-plus"></i></a>
+    
+    
+    </div>
+
+
+
+
+<div class="clearfix">&nbsp;</div>
+
+<div id="owl-carousel">
+    <div class="item">&nbsp;</div>
+</div>
+
+
+</div>
+
+
+
+<div class="modal fade" tabindex="-1" role="dialog" id="loginModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content modal-sm">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">QuickMed </h4>
+      </div>
+      <div class="modal-body">
+      <p id="mensaje"><i class="fa fa-warning"></i> <span>Email y/o password no encontrado.</span></p>
+      </div>
+       <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!-- jQuery -->
+    <!--<script src="vendor/jquery/jquery.min.js"></script>-->
+    <script src="vendor/jquery/jquery-3.1.1.min.js"></script>
+    <script type="application/javascript">
+	$(document).ready(function(e) {
+		
+		
+		
+		$('#entrar').click(function(e) {
+				
+				$('.loader').fadeIn('fast');
+				var email=$('#email').val();
+				
+				var uclave=$('#clave').val();
+				
+				if(email =='' || uclave ==''){
+					$('#mensaje span').html('Verifica los datos ingresados. Todos los campos son obligatorios');
+					$('#loginModal').modal('toggle');
+					$('.loader').fadeOut('slow');
+				}else{
+					uclave=md5(uclave);
+					var jqxhr = $.getJSON( "https://quickmed.edifarm.com.ec/ws/mobile/login.php",
+					{
+						deviceuuid:device.uuid, 
+						devicename:device.manufacturer, 
+						version:device.version, 
+						platform:device.platform, 
+						model:device.model,
+						username:email,
+						password:uclave,
+						action:'login',
+						
+					}, function(data) {
+						//console.log('send form new user');
+						var dat=data;
+					})
+					  .done(function(data) {
+						var r=data.respuesta;
+						if(r=='1'){
+							window.location='home.html';
+						}else{
+							$('#mensaje span').html('Email y/o password no encontrado.');
+							$('#loginModal').modal('toggle');
+						}
+						
+					  })
+					  .fail(function(data) {
+						//console.log('Error' + JSON.stringify(data));
+						$('#mensaje span').html('Verifica tu acceso a datos o wifi');
+						$('#messageModal').modal('show');
+					  })
+					  .always(function() {
+						$('.loader').fadeOut('slow');
+					});	
+				
+				}
+        });
+		
+		
+		
+		
+		$("#owl-carousel").owlCarousel({
+ 
+		  autoPlay: 3000, //Set AutoPlay to 3 seconds
+	 
+		  items : 1,
+		  itemsDesktop : [1170,3],
+		  itemsDesktopSmall : [768,2]
+	 
+	  	});
+		
+		 
+		
+		
+			
+		//alert('Dispositivo: '+device.uuid);
+		window.localStorage.setItem('deviceuuid', ''+device.uuid);
+
+		
+		$('.loader').fadeOut('slow');
+		
+		
+		
+		
+		$.getJSON("https://quickmed.edifarm.com.ec/ws/mobile/login.php", {
+			deviceuuid:device.uuid, 
+			devicename:device.manufacturer, 
+			version:device.version, 
+			platform:device.platform, 
+			model:device.model,
+			action: 'consultar',
+		}, function(data) {
+			var da=''+JSON.stringify(data);
+		}).done(function (data) {
+			var r = data.respuesta;
+			if (r === '1') {
+				window.location = 'home.html';
+			}
+
+		}).fail(function (data) {
+			var dt=''+JSON.stringify(data);
+
+		})
+		.always(function (data) {
+			$('.loader').fadeOut('slow');
+		});
+
+		//alert('final');
+		
+		
+    });
+    	
+		
+		
+    </script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="cordova.js"></script>
+    
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="vendor/scrollreveal/scrollreveal.min.js"></script>
+    <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+	<script src="js/main.js"></script>
+    <script src="js/md5.js"></script>
+    
+	<script src="js/owl.carousel.js"></script>
+    
+    
+    
+	
+    
+	
+	<script type="text/javascript" charset="utf-8">
+	//	alert('f');
+   
+		/* CheckDevice */
+
+	/*Analytics*/
+	window.ga.trackView('Intro');
+		
+    </script>
+
+    
+</body>
+</html>
