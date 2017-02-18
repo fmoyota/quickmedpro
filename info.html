@@ -51,13 +51,13 @@
     
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <h3 class="panel-title"><i class="fa fa-flask"></i> Laboratorio</h3>
+        <h3 class="panel-title"><i class="fa fa-industry"></i> Laboratorio</h3>
       </div>
       <div class="panel-body" id="nombre_laboratorio"> &nbsp; </div>
     </div>
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <h3 class="panel-title"><i class="fa fa-universitydropper"></i> Principios Activos</h3>
+        <h3 class="panel-title"><i class="fa fa-flask"></i> Principios Activos</h3>
       </div>
       <div class="panel-body">
         <table class="table table-condensed">
@@ -65,6 +65,7 @@
             <tr>
               <th rowspan="2">Nombre</th>
               <th colspan="2" style="text-align:center;">Teratogenicidad </th>
+			  
             </tr>
             <tr>
               <th>Embarazo </th>
@@ -81,12 +82,36 @@
         </table>
       </div>
     </div>
+    
+    <!-- Interacciones Medicamentosas -->
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-medkit"></i> Interacciones Medicamentosas</h3>
+      </div>
+      <div class="panel-body">
+        <table class="table table-condensed">
+          <thead>
+            <tr>
+              <th>Compuesto</th>
+			  <th>Efecto</th>
+            </tr>
+          </thead>
+          <tbody id="lista_interacciones">
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
     <div class="panel panel-primary">
       <div class="panel-heading">
         <h3 class="panel-title"><i class="fa fa-tags"></i> Presentaciones</h3>
       </div>
       <div class="panel-body">
-        <table class="table">
+        <table class="table table-condensed">
           <thead>
             <tr>
               <th>Presentaci&oacute;n</th>
@@ -120,6 +145,15 @@
       </div>
     </div>
     
+    <div class="panel panel-primary recomendaciones">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-user-md"></i> Recomendaciones</h3>
+      </div>
+      <div class="panel-body">
+		  <p id="recomendaciones"></p>
+      </div>
+    </div>
+    
     <div class="panel panel-primary">
       <div class="panel-heading">
         <h3 class="panel-title"><i class="fa fa-history"></i> Dosificaci&oacute;n</h3>
@@ -134,7 +168,7 @@
         <h3 class="panel-title"><i class="fa fa-heartbeat"></i> CIE 10</h3>
       </div>
       <div class="panel-body">
-		  <table class="table">
+		  <table class="table table-condensed">
           <thead>
             <tr>
               <th>C&oacute;digo</th>
@@ -150,7 +184,34 @@
         </table>
       </div>
     </div>
-    <div class="ej"></div>
+    
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-hospital-o"></i> Clasificaci&oacute;n ATC</h3>
+      </div>
+      <div class="panel-body">
+		  <table class="table">
+          <thead>
+            <tr>
+              <th>C&oacute;digo</th>
+              <th>Descripci&oacute;n</th>
+            </tr>
+          </thead>
+          <tbody id="lista_atc">
+            <tr>
+              <td>&nbsp;</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    
+    <div class="ej">* Precio unitario referencial de venta al público.</div>
+    
+	  <p>&nbsp;</p>
+    
   </section>
 </div>
 <div class="row footermenu">
@@ -185,6 +246,7 @@
 				user:'premium',
 			}, function(response) {
 			  //console.log( "success" );
+				//$('.ej').append(''+JSON.stringify(response)+'');
 			  
 			})
 			  .done(function(data) {
@@ -199,6 +261,13 @@
 			  $('#indicaciones').html(data.producto.indicaciones);
 			  $('#contraindicaciones').html(data.producto.contraindicaciones);
 			  $('#dosificacion').html(data.producto.dosificacion);
+				var recom=data.producto.recomendaciones;
+				if(recom){
+					$('#recomendaciones').html(recom);
+					$(".recomendaciones").show();
+				}else{
+					$(".recomendaciones").hide();
+				}
 				  
 			  	var psi=data.psi;
 			  	var foto=data.producto.foto;
@@ -219,9 +288,38 @@
 				var principios='';
 					 
 				$.each(prin,function(index,value){
+					var dped=value.dosispediatrica;
+					
 					principios=principios+'<tr><td>'+value.nombre+'</td><td>'+value.embarazo+'</td><td>'+value.lactancia+'</td></tr>';
+					if(dped){
+						principios=principios+'<tr><td colspan="3" ><em>Dosis Pediátrica</em> '+dped+'</td></tr>';
+					}
 				});
 				$('#lista_principios').html(principios);
+				  
+				  
+				var intmed=data.im;
+				var interacciones='';
+					 
+				$.each(intmed,function(indim,valim){
+					var fnt=valim.fuente;
+					if(fnt){
+						fnt='<br><em>Fuente:</em> '+fnt+'';
+					}else{
+						fnt='';
+					}
+					fnt='';
+					var cmt=valim.comentarios;
+					if(cmt){
+						cmt='<br><em>Comentarios:</em> '+cmt+'';
+					}else{
+						cmt='';
+					}
+					interacciones=interacciones+'<tr><td>'+valim.prinactivo+'</td><td>'+valim.efecto+cmt+fnt+'</td></tr>';
+					
+					
+				});
+				$('#lista_interacciones').html(interacciones);
 				  
 				  
 				var cie=data.cie10;
@@ -231,13 +329,24 @@
 					indices=indices+'<tr><td>'+vv.id_cie10+'</td><td>'+vv.descripcion+'</td></tr>';
 				});
 				$('#lista_cie').html(indices);
+				  
+				  
+				var atc=data.atc;
+				var clasficacion='';
+					
+				$.each(atc,function(iai,vav){
+					clasficacion=clasficacion+'<tr><td>'+vav.id_atc+'</td><td>'+vav.descripcion+'</td></tr>';
+				});
+				$('#lista_atc').html(clasficacion);
+				  
+				  
 				
 				var pres=data.presentaciones;
 				var presentaciones='';
 				var con='';
 				$.each(pres,function(ind,val){
 					 //$('.ej').html(JSON.stringify(val));
-					presentaciones=presentaciones+'<tr><td>'+val.nombre+'</td><td>';
+					presentaciones=presentaciones+'<tr><td>'+val.nombre+'<br><span class="precio">PVP: $ '+val.precio+'</span> *</td><td>';
 					con=val.concentracion;
 					$.each(con,function(i,v){
 						var cc=v.concentracion;

@@ -23,7 +23,7 @@
 <link href="css/style.css" rel="stylesheet">
 <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
-<style></style>
+
 </head>
 
 <body>
@@ -66,11 +66,9 @@
           <input name="telefono" type="text" id="telefono" class="form-control">
         </div>
         <div class="form-group input-group-sm">
-          <label>Fecha Nacimiento</label>
-          <div class="input-group">
-          <input name="cumple" type="text" id="cumple" class="form-control" readonly/>
-          <span class="input-group-addon"><i class="fa fa-calendar-o"></i></span>
-          </div>
+          <label>Fecha Nacimiento</label><br>
+          <input name="cumple" type="text" id="cumple" class="form-control" data-format="YYYY-MM-DD" data-template="YYYY  MM  DD " readonly/>
+          
         </div>
         <div class="form-group input-group-sm">
           <label>Pais</label>
@@ -374,7 +372,7 @@
         <h4 class="modal-title">QuickMed </h4>
       </div>
       <div class="modal-body">
-      <p><i class="fa fa-warning"></i> <span>Tu registro se ha guardado con éxto.</span><br>
+      <p><i class="fa fa-check-circle-o"></i>&nbsp; <span>Tu registro se ha guardado con éxto.</span><br>
       Bienvendido a QuickMed<sup>&reg;</sup> App</p>
       </div>
        <div class="modal-footer">
@@ -391,8 +389,9 @@
 <script src="vendor/jquery/jquery.min.js"></script> 
 <script type="text/javascript"> 
 		$(document).ready(function(e) {
+				$('.loader').fadeOut('slow');
         	
-			$("#cumple").datetimepicker({format: 'yyyy-mm-dd', minView:'2'});
+			//$("#cumple").datetimepicker({format: 'yyyy-mm-dd', minView:'2'});
 			
 			$('#enviar').click(function(e) {
 				
@@ -417,14 +416,18 @@
 					notif='0';
 				}
 				
-				if(email=='' || namef=='' || lastn=='' ||  uclave ==''){
-					$('#mensaje span').html('Verifica los datos ingresados. Todos los campos son obligatorios');
-					$('#messageModal').modal('toggle');
-					$('.loader').fadeOut('slow');
-				}else if(uclave!=uclavec){
-					$('#mensaje span').html('Verifica tu clave');
-					$('#messageModal').modal('toggle');
-					$('.loader').fadeOut('slow');
+				if( uclave =='' || uclave!=uclavec || email=='' || namef=='' || lastn==''){
+				
+					if(uclave!=uclavec){
+						$('#mensaje span').html('Verifica tu clave');
+						$('#messageModal').modal('toggle');
+						$('.loader').fadeOut('slow');
+					}else{
+						$('#mensaje span').html('Verifica los datos ingresados. Todos los campos son obligatorios');
+						$('#messageModal').modal('toggle');
+						$('.loader').fadeOut('slow');
+
+					}
 				}else{
 					uclave=md5(uclave);
 				var jqxhr = $.getJSON( "https://quickmed.edifarm.com.ec/ws/mobile/login.php",
@@ -455,15 +458,14 @@
 					var r=data.respuesta;
 					  
 						//alert('recibe '+r);
-					if(r==='1'){
-						$('#messageModal').modal('hide');
-						$('#newUserModal').modal('show');
-					}else if(r==='2'){
+					
+					if(r==='2'){
 						$('#mensaje span').html('El email que intenta registrar ya existe en nuestros registros. Intente iniciar sesión');
 						$('#messageModal').modal('show');
 					}else{
-						$('#mensaje span').html('Verifica los datos ingresados. Todos los campos son obligatorios');
-						$('#messageModal').modal('show');
+						
+						$('#messageModal').modal('hide');
+						$('#newUserModal').modal('show');
 					}
 					
 				  })
@@ -516,7 +518,7 @@
         });
 		
 	/*Analytics*/
-	window.ga.trackView('NewUser');
+	//window.ga.trackView('NewUser');
 	</script>
 
 <!-- Bootstrap Core JavaScript --> 
@@ -530,8 +532,16 @@
 <script src="cordova.js"></script>
 <script src="js/main.js"></script>
 <script src="js/md5.js"></script> 
-<script src="js/bootstrap-datetimepicker.min.js"></script> 
+<script src="js/moment.min.js"></script> 
+<script src="js/combodate.js"></script> 
 
+<script>
+			$(function(){
+				$('#cumple').combodate();    
+			});
+	/*Analytics*/
+	window.ga.trackView('NewUser');
+			</script>
 
 </body>
 </html>

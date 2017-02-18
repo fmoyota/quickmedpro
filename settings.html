@@ -40,7 +40,7 @@
 <div class="row wrapper">
   <div class="row headmenu">
     <div class="col-xs-4 item" id="btnIngredientes" data-toggle="modal" data-target="#searchModal">
-      <h1><i class="fa fa-shield"></i></h1>
+      <h1><i class="fa fa-flask"></i></h1>
       <small>Principio Activo</small></div>
     <div class="col-xs-4 borde item" id="btnLaboratorios" data-toggle="modal" data-target="#searchModal">
       <h1><i class="fa fa-industry"></i></h1>
@@ -82,11 +82,10 @@
               <input name="telefono" type="text" id="telefono" class="form-control">
             </div>
             <div class="form-group input-group-sm">
-              <label>Fecha Nacimiento</label>
-              <div class="input-group">
-                <input name="cumple" type="text" id="cumple" class="form-control"/>
-                <span class="input-group-addon"><i class="fa fa-calendar-o"></i></span> </div>
-            </div>
+          <label>Fecha Nacimiento</label><br>
+          <input name="cumple" type="text" id="cumple" class="form-control" data-format="YYYY-MM-DD" data-template="YYYY  MM  DD " readonly/>
+          
+        </div>
             <div class="form-group input-group-sm">
               <label>Pais</label>
               <select name="pais" id="pais" class="form-control">
@@ -555,8 +554,11 @@
         });
 	
 	
+			$(function(){
+				$('#cumple').combodate();    
+			});
 	/*Analytics*/
 	window.ga.trackView('Settings');
-	</script>
+			</script>
 </body>
 </html>

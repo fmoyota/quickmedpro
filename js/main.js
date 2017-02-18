@@ -114,7 +114,7 @@ function failAnalytics() {
 }
 
 
-//window.ga.startTrackerWithId('UA-18919211-2', 30);
+window.ga.startTrackerWithId('UA-18919211-2', 30);
 
 //*
 //analytics.startTrackerWithId('UA-18919211-2', successAnalytics, failAnalytics);

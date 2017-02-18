@@ -19,6 +19,11 @@ img.prod {
 	display: block;
 	width: 20%;
 }
+
+table.centro td, table.centro th{
+	text-align: center;
+}
+
 .row {
 	margin-left: 0;
 	margin-right: 0;
@@ -129,6 +134,19 @@ img.prod {
 	position: fixed;
 }
 .loader img {
+	margin: auto;
+	display: block;
+	max-width: 80px;
+}
+
+
+.loader_init {
+	width: 100%;
+	height: auto;
+	padding: 40% 15%;
+	margin: 0;
+}
+.loader_init img {
 	margin: auto;
 	display: block;
 	max-width: 80px;
@@ -246,50 +264,7 @@ input.cmn-toggle-round:checked + label:after {
 	margin-left: 25px;
 }
 
-/*
-@media all and (min-device-width: 480px) {
-body {
-	font-size: 2.4em;
-}
-h1 i.fa {
-	font-size: 1.4em;
-}
 
-img.prod {
-	width: 40%;
+.precio{
+	color:#337ab7;
 }
-}
-@media all and (min-width: 768px) {
-.modal-dialog {
-	width: 90%;
-	margin: 30px auto;
-}
-.modal-dialog h4 {
-	font-size: 1em;
-}
-.modal-dialog .modal-body {
-	font-size: 1em;
-}
-.modal-dialog .modal-body .input-group-sm>.form-control, .modal-dialog .modal-body .input-group-sm>.input-group-addon, .modal-dialog .modal-body .input-group-sm>.input-group-btn>.btn {
-	height: 70px;
-	font-size: 1em;
-}
-.modal-dialog .modal-body .input-group-sm>.input-group-btn>.btn {
-	width: 70px;
-	font-size: 30px;
-}
-}
-
-
-@media all and (min-device-width: 1170px) {
-body {
-	font-size: 5.5em;
-}
-h1 i.fa {
-	font-size: 4.5em;
-}
-	h3.panel-title{
-		font-size: 1em;
-	}
-}
-*/
