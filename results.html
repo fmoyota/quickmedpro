@@ -111,7 +111,7 @@
 			var tab=getUrlParameter('tabla');
 			
 			$('#criterio').html('<small>Buscando '+tab+': <em>' +prod+'</em></small>');
-			$('#pagetitle').html(tab.toUpperCase()+'S');
+			
 			var jqxhr = $.getJSON( "https://quickmed.edifarm.com.ec/ws/mobile/buscar.php",
 			{
 				producto:prod,
@@ -149,7 +149,10 @@
 				$('.loader').hide('slow');
 				
 			  });
-			
+			if(tab=='ingrediente'){
+				tab='producto';
+			}
+			$('#pagetitle').html(tab.toUpperCase()+'S');
 			
 	/*Analytics*/
 	window.ga.trackView('Search?prod='+prod+'&tab='+tab);
