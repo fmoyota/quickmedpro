@@ -32,16 +32,7 @@
 
 <body>
 
-<div class="loader">
-<img src="img/logo_load.png" alt=""/>
-<div class="spinner">
-  <div class="rect1"></div>
-  <div class="rect2"></div>
-  <div class="rect3"></div>
-  <div class="rect4"></div>
-  <div class="rect5"></div>
-</div>
-</div>
+
 
 <div class="row">
 <h1 class="titulo"><img src="img/logo_header.png" alt="" width="60"/> QuickMed<sup>&reg;</sup></h1>
@@ -51,11 +42,11 @@
 
 	
     <div class="login_init"> 
-     
+    
 		<h3 class="text-center">Acceso QuickMed&reg;</h3>
 		<p>		Ingrese sus datos de acceso registrados en QuickMed&reg; Web</p>
 		<p>&nbsp;</p>
-   
+		
     <form>
   <div class="form-group">
     <label for="exampleInputEmail1">Usuario o Email</label>
@@ -72,7 +63,7 @@
 <div class="clearfix" id="internet" style="color: red">&nbsp;</div>
         <hr>
 
-	<p>Si no dispone de una cuenta en QuickMed&reg; Web. <a href="newuser.html">Reg&iacute;strese aquí <i class="fa fa-user-plus"></i></a></p>
+		<p>Si no dispone de una cuenta en QuickMed&reg; Web. <a href="newuser.html">Reg&iacute;strese aquí <i class="fa fa-user-plus"></i></a></p>
     
     
     <div class="loader_init">
@@ -85,7 +76,7 @@
 		</div>
 		<small id="msg_init">Verificando tu dispositivo</small>
 	</div>
-   	
+    
     </div>
 
 
@@ -120,15 +111,10 @@
 <!-- jQuery -->
     <!--<script src="vendor/jquery/jquery.min.js"></script>-->
     <script src="vendor/jquery/jquery-3.1.1.min.js"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-    
-    <script src="cordova.js"></script>
+    	<script>alert('0');</script>
     <script type="application/javascript">
 	$(document).ready(function(e) {
 		
-		alert(device.uuid);
-		$('.loader').fadeOut('slow');
 		
 		
 		$('#entrar').click(function(e) {
@@ -217,6 +203,7 @@
 			var da=''+JSON.stringify(data);
 		}).done(function (data) {
 			var r = data.respuesta;
+			
 			if (r === '1') {
 				window.location = 'home.html';
 			}
@@ -238,9 +225,12 @@
 		
     </script>
 
-
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script>alert('1');</script>
     <!-- Plugin JavaScript -->
-    
+    <script src="cordova.js"></script>
+    	<script>alert('2');</script>
     <script src="js/jquery.easing.min.js"></script>
     <script src="vendor/scrollreveal/scrollreveal.min.js"></script>
     <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
@@ -248,12 +238,16 @@
     <script src="js/md5.js"></script>
     
 	<script src="js/owl.carousel.js"></script>
-	
-	
+    
+    
 	<script type="text/javascript" charset="utf-8">
 	//	alert('f');
+   
+		/* CheckDevice */
+
 	/*Analytics*/
 	window.ga.trackView('Intro');
+		
     </script>
 
     
