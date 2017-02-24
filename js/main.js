@@ -94,6 +94,7 @@ function getSettings() {
 		.fail(function (data) {
 
 			var error='Error' + JSON.stringify(data);
+			console.log(error);
 		})
 		.always(function () {
 			$('.loader').fadeOut('slow');
@@ -101,7 +102,7 @@ function getSettings() {
 
 	//*/
 
-};
+}
 
 
 
@@ -111,11 +112,11 @@ function successAnalytics() {
 }
 
 function failAnalytics() {
-	consolel.log('No se conecta analytics');
+	//console.log('No se conecta analytics');
 }
 
 
-window.ga.startTrackerWithId('UA-18919211-2', 30);
+//window.ga.startTrackerWithId('UA-18919211-2', 30);
 
 //*
 //analytics.startTrackerWithId('UA-18919211-2', successAnalytics, failAnalytics);
