@@ -207,6 +207,17 @@
 		 
 		
 		
+		
+		
+	/*Analytics*/
+	//window.ga.trackView('Intro');
+    });
+    	
+		document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() {
+    alert('cordova'+device.cordova);
+	
+	
 			
 		alert('Dispositivo: '+device.uuid);
 		window.localStorage.setItem('deviceuuid', ''+device.uuid);
@@ -242,15 +253,7 @@
 		});
 
 		alert('final'+device.uuid);
-		
-		
-	/*Analytics*/
-	//window.ga.trackView('Intro');
-    });
-    	
-		document.addEventListener("deviceready", onDeviceReady, false);
-function onDeviceReady() {
-    alert('cordova'+device.cordova);
+	
 }
 		
     </script>

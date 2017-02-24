@@ -159,7 +159,7 @@
 			});
 
 			alert('9');			
-			alert(device.uuid);
+			//alert(device.uuid);
 			//*
 			
             var doc='nuevos';
@@ -220,6 +220,11 @@
 	/*Analytics*/
 	//window.ga.trackView('Home');
         });
+	
+	document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() {
+	
+}
 	
 </script>
 
