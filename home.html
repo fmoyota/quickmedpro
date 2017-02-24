@@ -143,12 +143,23 @@
 <script type="text/javascript"> 
 		$(document).ready(function(e) {
             
-			
-			alert(device.uuid);
-			
+			alert('8');
 			$('.loader').hide('slow');
 			
 			
+		    
+			$("#owl-carousel").owlCarousel({
+ 
+			  autoPlay: 3000, //Set AutoPlay to 3 seconds
+		 
+			  items : 1,
+			  itemsDesktop : [1170,3],
+			  itemsDesktopSmall : [768,2]
+		 
+			});
+
+			alert('9');			
+			alert(device.uuid);
 			//*
 			
             var doc='nuevos';
@@ -168,11 +179,12 @@
 				
 				
 			}, function(response) {
-			  console.log( "success" );
+			  //console.log( "success" );
+				alert('success');
 			  
 			})
 			  .done(function(data) {
-				console.log( "second success" );
+				//console.log( "second success" );
 				
 				
 				
@@ -191,31 +203,19 @@
 				
 			  
 			  })
-			  .fail(function() {
+			  .fail(function(data) {
 				//console.log( "error" );
+				  alert(JSON.stringify(data));
+				  
 			  })
 			  .always(function() {
 				//console.log( "complete" );
+				  
+			alert('11');
 				$('.loader').hide('slow');
 			  });
 			
 			//*/
-			
-			
-			
-			
-		    
-			$("#owl-carousel").owlCarousel({
- 
-			  autoPlay: 3000, //Set AutoPlay to 3 seconds
-		 
-			  items : 1,
-			  itemsDesktop : [1170,3],
-			  itemsDesktopSmall : [768,2]
-		 
-			});
-			
-			
 		
         });
 	
