@@ -162,6 +162,16 @@
 			//alert(device.uuid);
 			//*
 			
+			
+			//*/
+		
+	/*Analytics*/
+	window.ga.trackView('Home');
+        });
+	
+	document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() {
+	
             var doc='nuevos';
 			
 			var id='';
@@ -214,16 +224,6 @@
 			alert('11');
 				$('.loader').hide('slow');
 			  });
-			
-			//*/
-		
-	/*Analytics*/
-	//window.ga.trackView('Home');
-        });
-	
-	document.addEventListener("deviceready", onDeviceReady, false);
-function onDeviceReady() {
-	
 }
 	
 </script>
