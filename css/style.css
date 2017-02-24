@@ -150,8 +150,9 @@ h3, h4{
 .loader_init {
 	width: 100%;
 	height: auto;
-	padding: 40% 15%;
+	padding: 1em;
 	margin: 0;
+	text-align: center;
 }
 .loader_init img {
 	margin: auto;

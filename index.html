@@ -248,7 +248,10 @@
 	//window.ga.trackView('Intro');
     });
     	
-		
+		document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() {
+    alert(device.cordova);
+}
 		
     </script>
     
