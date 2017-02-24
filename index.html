@@ -111,15 +111,15 @@
 <!-- jQuery -->
     <!--<script src="vendor/jquery/jquery.min.js"></script>-->
     <script src="vendor/jquery/jquery-3.1.1.min.js"></script>
-    	<script>alert('0');</script>
+    	
     
 
     <!-- Bootstrap Core JavaScript -->
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script>alert('1');</script>
+
     <!-- Plugin JavaScript -->
     <script src="cordova.js"></script>
-    	<script>alert('2');</script>
+
     <script src="js/jquery.easing.min.js"></script>
     <script src="vendor/scrollreveal/scrollreveal.min.js"></script>
     <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
@@ -215,11 +215,11 @@
     	
 		document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
-    alert('cordova'+device.cordova);
+    //alert('cordova'+device.cordova);
 	
 	
 			
-		alert('Dispositivo: '+device.uuid);
+		//alert('Dispositivo: '+device.uuid);
 		window.localStorage.setItem('deviceuuid', ''+device.uuid);
 
 		
@@ -236,7 +236,7 @@ function onDeviceReady() {
 			action: 'consultar',
 		}, function(data) {
 			var da=''+JSON.stringify(data);
-			alert('data:'+da);
+			//alert('data:'+da);
 		}).done(function (data) {
 			var r = data.respuesta;
 			
@@ -246,13 +246,13 @@ function onDeviceReady() {
 
 		}).fail(function (data) {
 			var dt=''+JSON.stringify(data);
-			alert('data:'+dt);
+			//alert('data:'+dt);
 		})
 		.always(function (data) {
 			$('.loader_init').fadeOut('slow');
 		});
 
-		alert('final'+device.uuid);
+		//alert('final'+device.uuid);
 	
 }
 		
