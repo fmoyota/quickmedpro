@@ -47,7 +47,9 @@
   <section id="personales">
     <div class="account">
       <h4 class="subtitulo">Regístrate</h4>
-      <p>Crea una cuenta gratis y usa QuickMed.</p>
+      <p>Crea una cuenta gratis y usa QuickMed&reg;.</p>
+      <small>Si ya tienes una cuenta en QuickMed&reg; Web ingresa <a href="index.html">aquí</a></small>
+			<p>&nbsp;</p>
       <form id="newuserform" action="#" method="post">
         <div class="form-group input-group-sm">
           <label>* Nombres</label>
@@ -67,7 +69,7 @@
         </div>
         <div class="form-group input-group-sm">
           <label>Fecha Nacimiento</label><br>
-          <input name="cumple" type="text" id="cumple" class="form-control" data-format="YYYY-MM-DD" data-template="YYYY  MM  DD " readonly/>
+          <input name="cumple" type="text" id="cumple" class="form-control" data-format="YYYY-MM-DD" data-template="YYYY  MMM  DD " data-smartDays="true" readonly/>
           
         </div>
         <div class="form-group input-group-sm">
@@ -376,7 +378,7 @@
       Bienvendido a QuickMed<sup>&reg;</sup> App</p>
       </div>
        <div class="modal-footer">
-        <a href="./home.html" class="btn btn-default" data-dismiss="modal">Ir <i class="fa fa-angle-double-right"></i></a>
+        <a href="home.html" class="btn btn-primary">Ir <i class="fa fa-angle-double-right"></i></a>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -389,9 +391,7 @@
 <script src="vendor/jquery/jquery.min.js"></script> 
 <script type="text/javascript"> 
 		$(document).ready(function(e) {
-				$('.loader').fadeOut('slow');
-        	
-			//$("#cumple").datetimepicker({format: 'yyyy-mm-dd', minView:'2'});
+			
 			
 			$('#enviar').click(function(e) {
 				
@@ -416,18 +416,14 @@
 					notif='0';
 				}
 				
-				if( uclave =='' || uclave!=uclavec || email=='' || namef=='' || lastn==''){
-				
-					if(uclave!=uclavec){
-						$('#mensaje span').html('Verifica tu clave');
-						$('#messageModal').modal('toggle');
-						$('.loader').fadeOut('slow');
-					}else{
-						$('#mensaje span').html('Verifica los datos ingresados. Todos los campos son obligatorios');
-						$('#messageModal').modal('toggle');
-						$('.loader').fadeOut('slow');
-
-					}
+				if(email=='' || namef=='' || lastn=='' ||  uclave ==''){
+					$('#mensaje span').html('Verifica los datos ingresados. Todos los campos son obligatorios');
+					$('#messageModal').modal('toggle');
+					$('.loader').fadeOut('slow');
+				}else if(uclave!=uclavec){
+					$('#mensaje span').html('Verifica tu clave');
+					$('#messageModal').modal('toggle');
+					$('.loader').fadeOut('slow');
 				}else{
 					uclave=md5(uclave);
 				var jqxhr = $.getJSON( "https://quickmed.edifarm.com.ec/ws/mobile/login.php",
@@ -463,7 +459,6 @@
 						$('#mensaje span').html('El email que intenta registrar ya existe en nuestros registros. Intente iniciar sesión');
 						$('#messageModal').modal('show');
 					}else{
-						
 						$('#messageModal').modal('hide');
 						$('#newUserModal').modal('show');
 					}
@@ -482,23 +477,7 @@
 			});   
 			
 			$('.loader').fadeOut('slow');
-			
-			/*
-			var option = "";	
-			option[analytics.OPTIONS.ACTION] = "Crear";
-			option[analytics.OPTIONS.LABEL] = "Crear nuevo registro";
-			
-			option[analytics.OPTIONS.PRODUCT_NAME] = "Version " +devive.version;
-			option[analytics.OPTIONS.PRODUCT_CATEGORY] = "Plataforma " + device.platform;
-			option[analytics.OPTIONS.PRODUCT_BRAND] = "Marca "+device.manufaturer;
-		    option[analytics.OPTIONS.PRODUCT_VARIANT] = "Modelo "+device.model;
-			
-			analytics.trackView('Registro-Nuevos-Usuarios', option, successAnalytics, failAnalytics);
-			
-			//*/
-			
-		    
-			
+					
 			/* Links Externos */
 			
 			$('a.external').click(function(e) {
@@ -517,8 +496,6 @@
 			
         });
 		
-	/*Analytics*/
-	//window.ga.trackView('NewUser');
 	</script>
 
 <!-- Bootstrap Core JavaScript --> 
