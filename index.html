@@ -208,7 +208,7 @@
 		
 		
 			
-		//alert('Dispositivo: '+device.uuid);
+		alert('Dispositivo: '+device.uuid);
 		window.localStorage.setItem('deviceuuid', ''+device.uuid);
 
 		
@@ -225,7 +225,7 @@
 			action: 'consultar',
 		}, function(data) {
 			var da=''+JSON.stringify(data);
-			alert('data:'+da)
+			alert('data:'+da);
 		}).done(function (data) {
 			var r = data.respuesta;
 			
@@ -235,7 +235,7 @@
 
 		}).fail(function (data) {
 			var dt=''+JSON.stringify(data);
-
+			alert('data:'+dt);
 		})
 		.always(function (data) {
 			$('.loader_init').fadeOut('slow');

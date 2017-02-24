@@ -151,7 +151,7 @@
 	<plugin name="cordova-plugin-inappbrowser" spec="1.6.1" />
 	<plugin name="cordova-plugin-splashscreen" spec="4.0.1" />
 	
-	<plugin name="cordova-plugin-google-analytics"/>
+	<!--<plugin name="cordova-plugin-google-analytics"/>-->
 	
 	
 	
